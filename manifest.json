@@ -1,0 +1,7 @@
+{
+  "name": "verrassend-vega",
+  "short_name": "verrassend-vega",
+  "description": "Recipee website",
+  "start_url": "/",
+  "display": "standalone"
+}

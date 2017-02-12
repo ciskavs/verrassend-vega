@@ -1,0 +1,60 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="src/elements/vv-recipe-card.html">
+
+<!--
+`verrassend-vega-app`
+Verrassend Vega app website for vega recipes.
+
+Example:
+
+    <verrassend-vega-app></verrassend-vega-app>
+
+@demo demo/index.html
+-->
+
+<dom-module id="verrassend-vega-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <iron-ajax
+      auto
+      method="GET"
+      url="/api/recipe"
+      handle-as="json"
+      on-response="_handleResponse"
+      on-error="_handleError"></iron-ajax>
+
+    <h2>My verrassend-vega-app</h2>
+    [[name]]
+
+    <vv-recipe-card></vv-recipe-card>
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'verrassend-vega-app',
+
+      properties: {
+        name:  {
+          type: String,
+          value: 'ciska\'s eerste name'
+        }
+      },
+
+      _handleResponse: function(data) {
+        this.name = data.detail.response.name;
+      },
+      _handleError: function() {
+        console.log('Oops, an error occured');
+      }
+
+    });
+  </script>
+</dom-module>
